@@ -1,7 +1,3 @@
-x::Int
-x = 6
-
-
 dropLast :: [Int] -> [Int]
 dropLast [] = []
 dropLast [x] = []
@@ -28,4 +24,21 @@ addAll :: [Int] -> Int
 addAll [] = 0
 addAll (x:xs) = x + addAll xs    
 
--- test
+checkDigit :: [Int] -> Int
+checkDigit[x] = x
+checkDigit (x:xs) = checkDigit xs
+
+
+isDivisibleBy10 :: Int -> Bool
+isDivisibleBy10 x
+    | x `mod` 10 == 0 = True
+    | otherwise = False
+
+validate :: [Int] -> Bool
+validate xs = let withoutLastElement = dropLast xs
+                  reversedList = reverseList withoutLastElement
+                  oddPlacesDoubled = multiplyOddPlacesBy2 reversedList
+                  nineSubtracted = subtract9 oddPlacesDoubled
+                  sumAll = addAll nineSubtracted
+                  sumPlusCheckDigit = sumAll + (checkDigit xs)
+               in isDivisibleBy10 sumPlusCheckDigit
